@@ -15,6 +15,6 @@ public class Main {
         Livre livre = new Livre(1, "jean", "jean", "POLICIER", 1444) ;
 
 
-        System.out.println(daoimpl.getLivres().get(0).getTypeDuLivre(). );
+        System.out.println(daoimpl.getLivres().get(0).getTypeDuLivre() );
     }
 }

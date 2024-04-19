@@ -216,15 +216,14 @@ public class GestionVisite {
             return;
         }
 
-        System.out.print("Entrez la date de la visite (yyyy-MM-dd) : ");
-        String date = scanner.nextLine();
 
-        Visite visite = new Visite(entreprise, commercial, date);
-        DataStore.visites.add(visite);
-        entreprise.ajouterVisite(visite);
-        commercial.ajouterVisite(visite, "Planifiée");
-
-        System.out.println("Visite ajoutée avec succès.");
+        executorService.execute(() -> {
+            Visite visite = new Visite(entreprise, commercial, "2021-06-01");
+            DataStore.visites.add(visite);
+            entreprise.ajouterVisite(visite);
+            commercial.ajouterVisite(visite, "Planifiée");
+            System.out.println("Visite ajoutée avec succès.");
+        });
     }
 
     private static Entreprise trouverEntreprise(String nom) {

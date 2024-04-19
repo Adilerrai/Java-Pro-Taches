@@ -9,8 +9,8 @@ public class User {
     private String phone ; 
     private String adresse;
     private String email; 
-    private Sexe  sexe;
-    public User(int id, String nom, String prenom, String phone, String adresse, String email, Sexe sexe) {
+    private String  sexe;
+    public User(int id, String nom, String prenom, String phone, String adresse, String email, String sexe) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -55,10 +55,10 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-    public Sexe getSexe() {
+    public String getSexe() {
         return sexe;
     }
-    public void setSexe(Sexe sexe) {
+    public void setSexe(String sexe) {
         this.sexe = sexe;
     }
     

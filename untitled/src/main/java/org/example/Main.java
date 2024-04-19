@@ -14,5 +14,6 @@ public class Main {
 
 
         System.out.println(daoimpl.getLivres().get(0).getTypeDuLivre() );
+
     }
 }

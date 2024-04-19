@@ -11,7 +11,7 @@ import org.example.database.DatabaseConnection;
 import org.example.model.Livre;
 import org.example.service.DAO.LivreDAO;
 
-public class DAOImplementation implements LivreDAO {
+public class LivreDAOImpl implements LivreDAO {
 
     static Connection con =  DatabaseConnection.getConnection();
 

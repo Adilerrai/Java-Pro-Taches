@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommercialDTO {
-    private int id;
+    private Long id;
     private String nom;
     private String prenom;
     private String email;
@@ -20,5 +20,5 @@ public class CommercialDTO {
     private long  matricule;
 
 
-    private List<VisiteDTO> visites;
+    private List<Visite> visites;
 }

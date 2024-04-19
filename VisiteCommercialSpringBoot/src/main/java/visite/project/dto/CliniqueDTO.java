@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class CliniqueDTO extends EntrepriseDTO{
 
-    private int id;
+    private Long id;
     private int nbMedecin;
     private String specialite;
     private List<VisiteDTO> visites;

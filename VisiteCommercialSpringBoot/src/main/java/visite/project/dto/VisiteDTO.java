@@ -12,24 +12,24 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class VisiteDTO {
-    private int id;
+    private Long id;
     private LocalDate date;
     private String heure;
     private String objetDelavisite;
     private Status status;
 
 
-    private PharamcieDTO pharmacie;
-    private GrossisteDTO grossiste;
+    private Pharmacie pharmacie;
+    private Grossiste grossiste;
 
 
-    private LaboratoireDTO laboratoire;
+    private Laboratoire laboratoire;
 
 
-    private CommercialDTO commercial;
+    private Commercial commercial;
 
 
-    private CliniqueDTO clinique;
+    private Clinique clinique;
 
 
 }

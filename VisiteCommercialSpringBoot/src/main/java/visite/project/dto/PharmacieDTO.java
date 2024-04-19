@@ -13,10 +13,10 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PharamcieDTO extends EntrepriseDTO {
+public class PharmacieDTO extends EntrepriseDTO {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
 
     private List<VisiteDTO> visites;

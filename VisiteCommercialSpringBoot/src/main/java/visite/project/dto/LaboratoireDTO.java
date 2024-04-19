@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LaboratoireDTO extends EntrepriseDTO{
-    private int id ;
+    private Long id ;
     private String specialite;
 
     private List<VisiteDTO> visites;

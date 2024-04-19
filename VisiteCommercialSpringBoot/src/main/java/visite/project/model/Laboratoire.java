@@ -17,7 +17,7 @@ import java.util.List;
 public class Laboratoire extends Entreprise {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int id ;
+    private Long id ;
     private String specialite;
     @OneToMany(mappedBy = "laboratoire")
     private List<Visite> visites;

@@ -15,7 +15,7 @@ import java.util.List;
 public class Pharmacie extends Entreprise {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @OneToMany(mappedBy = "pharmacie")
     private List<Visite> visites;

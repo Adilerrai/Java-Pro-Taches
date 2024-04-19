@@ -1,17 +1,17 @@
 package visite.project.service;
 
 import org.springframework.stereotype.Service;
-import visite.project.dto.PharamcieDTO;
+import visite.project.dto.PharmacieDTO;
 
 import java.util.List;
 @Service
 
 public interface PharmacieService {
-    PharamcieDTO create(PharamcieDTO pharamcieDTO);
+    PharmacieDTO create(PharmacieDTO pharamcieDTO);
 
-    PharamcieDTO update(PharamcieDTO pharamcieDTO);
+    PharmacieDTO update(PharmacieDTO pharamcieDTO);
     void delete(Long id);
-    PharamcieDTO findById(Long id);
-    PharamcieDTO findByNom(String nom);
-    List<PharamcieDTO> findAll();
+    PharmacieDTO findById(Long id);
+    PharmacieDTO findByNom(String nom);
+    List<PharmacieDTO> findAll();
 }

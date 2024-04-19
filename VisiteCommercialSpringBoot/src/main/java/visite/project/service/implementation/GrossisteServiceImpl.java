@@ -2,13 +2,17 @@ package visite.project.service.implementation;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import visite.project.dto.GrossisteDTO;
 import visite.project.model.Grossiste;
 import visite.project.repository.GrossisteRepository;
 import visite.project.service.GrossisteService;
 
+import java.util.List;
+
 
 @Service
+@Transactional
 public class GrossisteServiceImpl  implements GrossisteService {
 
 
@@ -68,5 +72,11 @@ public class GrossisteServiceImpl  implements GrossisteService {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public List<GrossisteDTO> findAll() {
+        List<Grossiste> grossistes = grossisteRepository.findAll();
+        return grossistes.stream().map(grossiste -> modelMapper.map(grossiste, GrossisteDTO.class)).toList();
     }
 }

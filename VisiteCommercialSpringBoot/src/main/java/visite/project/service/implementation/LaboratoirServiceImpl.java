@@ -1,6 +1,7 @@
 package visite.project.service.implementation;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 import visite.project.dto.LaboratoireDTO;
 import visite.project.model.Laboratoire;
 import visite.project.repository.LaboratoireRepository;
@@ -8,7 +9,7 @@ import visite.project.service.LaboratoireService;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Service
 public class LaboratoirServiceImpl implements LaboratoireService {
 
     private final LaboratoireRepository laboratoireRepository;

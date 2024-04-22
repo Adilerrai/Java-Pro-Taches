@@ -39,7 +39,7 @@ public class GrossisteController {
         return ResponseEntity.ok(grossiste);
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         grossisteService.delete(id);

@@ -6,7 +6,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import visite.project.dto.CommercialDTO;
 import visite.project.service.CommercialService;
-import visite.project.service.implementation.CommercialServiceImpl;
 
 @RestController
 @RequestMapping("/api/commercial")
@@ -21,7 +20,7 @@ public class CommercialController {
     @PreAuthorize("hasRole(ADMIN)")
     public ResponseEntity<CommercialDTO> save(@RequestBody CommercialDTO commercialDTO){
         CommercialDTO commercialDTO1= commercialService.creat(commercialDTO);
-        return ResponseEntity.ok(commercialDTO);
+        return ResponseEntity.ok(commercialDTO1);
     }
 
     @GetMapping("/find/{id}")
@@ -30,10 +29,24 @@ public class CommercialController {
         CommercialDTO commercialDTO= commercialService.findById(id);
         return ResponseEntity.ok(commercialDTO);
     }
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole(ADMIN)")
     public ResponseEntity<String> delete(@PathVariable Long id){
         commercialService.delete(id);
         return ResponseEntity.ok("Commercial deleted successfully");
     }
+    @PutMapping("/update")
+    @PreAuthorize("hasRole(ADMIN)")
+    public ResponseEntity<CommercialDTO> updateCommercial(@RequestBody CommercialDTO commercialDTO){
+        CommercialDTO commDTO = commercialService.update(commercialDTO);
+        return ResponseEntity.ok(commDTO);
+    }
+
+    @GetMapping("/findByMatricule/{matricule}")
+    @PreAuthorize("hasRole(ADMIN)")
+    public  ResponseEntity<CommercialDTO> findByMatricule(@PathVariable long matricule){
+        CommercialDTO commDTO =  commercialService.findByMatricule(matricule);
+        return ResponseEntity.ok(commDTO);
+    }
+
 }

@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import visite.project.model.*;
 import visite.project.model.enums.Status;
 
-import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 @Data
 @AllArgsConstructor

@@ -23,6 +23,7 @@ public class Visite {
     private Status status;
 
     @ManyToOne
+    @JoinColumn(name="pharmacie_id", referencedColumnName="id" )
     private Pharmacie pharmacie;
     @ManyToOne
     private Grossiste grossiste;
@@ -31,6 +32,7 @@ public class Visite {
     private Laboratoire laboratoire;
 
     @ManyToOne
+    @JoinColumn(name="commercial_id", referencedColumnName="id" )
     private Commercial commercial;
 
     @ManyToOne

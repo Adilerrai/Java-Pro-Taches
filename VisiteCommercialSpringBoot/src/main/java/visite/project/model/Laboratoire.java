@@ -1,5 +1,6 @@
 package visite.project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,5 +21,11 @@ public class Laboratoire extends Entreprise {
     private Long id ;
     private String specialite;
     @OneToMany(mappedBy = "laboratoire")
+    @JsonIgnore
+
     private List<Visite> visites;
+
+    public Laboratoire(long id) {
+        this.id = id;
+    }
 }

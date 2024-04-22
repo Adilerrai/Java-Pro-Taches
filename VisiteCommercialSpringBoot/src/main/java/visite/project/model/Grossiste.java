@@ -1,6 +1,7 @@
 package visite.project.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,11 @@ public class Grossiste extends Entreprise {
         private String specialite;
         private int nbVendeur;
 
-        @OneToMany(mappedBy = "grossiste")
+        @OneToMany(mappedBy="grossiste")
+        @JsonIgnore
         private List<Visite> visites;
 
+        public Grossiste(long id) {
+                this.id = id;
+        }
 }

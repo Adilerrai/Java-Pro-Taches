@@ -18,7 +18,5 @@ public class CommercialDTO {
     private String telephone;
     private String adresse;
     private long  matricule;
-
-
     private List<Visite> visites;
 }

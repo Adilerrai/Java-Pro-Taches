@@ -1,5 +1,6 @@
 package visite.project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,9 +22,13 @@ public class Commercial {
     private String telephone;
     private String adresse;
     private long  matricule;
+    public Commercial(long id) {
+        this.id = id;
+    }
 
 
     @OneToMany(mappedBy = "commercial")
+    @JsonIgnore
     private List<Visite> visites;
 
     public Commercial(long id ,String nom, String prenom, String email, String telephone, String adresse, long matricule) {
@@ -36,5 +41,17 @@ public class Commercial {
         this.matricule = matricule;
     }
 
+    @Override
+    public String toString() {
+        return "Commercial{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", email='" + email + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", matricule=" + matricule +
+                '}';
+    }
 
 }

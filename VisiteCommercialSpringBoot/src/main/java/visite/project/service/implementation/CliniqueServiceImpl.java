@@ -1,6 +1,7 @@
 package visite.project.service.implementation;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 import visite.project.dto.CliniqueDTO;
 import visite.project.model.Clinique;
 import visite.project.repository.CliniqueRepository;
@@ -9,6 +10,7 @@ import visite.project.service.CliniqueService;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class CliniqueServiceImpl implements CliniqueService {
 
     private final CliniqueRepository cliniqueRepository;
@@ -62,5 +64,15 @@ public class CliniqueServiceImpl implements CliniqueService {
     public List<CliniqueDTO> findAll() {
         List<Clinique> cliniques = cliniqueRepository.findAll();
         return cliniques.stream().map(clinique -> modelMapper.map(clinique, CliniqueDTO.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public CliniqueDTO findByNom(String nom) {
+        Clinique clinique = cliniqueRepository.findByNom(nom);
+        if (clinique != null) {
+            return modelMapper.map(clinique, CliniqueDTO.class);
+        } else {
+            return null;
+        }
     }
 }

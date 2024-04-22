@@ -13,4 +13,5 @@ public interface CliniqueService {
     void delete(Long id);
     List<CliniqueDTO> findAll();
 
+    CliniqueDTO findByNom(String nom);
 }

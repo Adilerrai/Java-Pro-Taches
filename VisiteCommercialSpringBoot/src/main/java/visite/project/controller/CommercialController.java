@@ -1,15 +1,19 @@
 package visite.project.controller;
 
 
+import org.apache.logging.log4j.LogManager;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import visite.project.dto.CommercialDTO;
+import org.apache.logging.log4j.Logger;
 import visite.project.service.CommercialService;
 
 @RestController
 @RequestMapping("/api/commercial")
 public class CommercialController {
+    Logger logger = LogManager.getLogger(CommercialController.class);
+
     private final CommercialService commercialService;
 
     public CommercialController(CommercialService commercialService){
@@ -19,6 +23,7 @@ public class CommercialController {
     @PostMapping("/create")
     @PreAuthorize("hasRole(ADMIN)")
     public ResponseEntity<CommercialDTO> save(@RequestBody CommercialDTO commercialDTO){
+        logger.info("Creation of Commercial");
         CommercialDTO commercialDTO1= commercialService.creat(commercialDTO);
         return ResponseEntity.ok(commercialDTO1);
     }

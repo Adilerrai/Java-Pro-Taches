@@ -1,7 +1,9 @@
 package visite.project.service.implementation;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import visite.project.dto.VisiteCriteria;
 import visite.project.dto.VisiteDTO;
 import visite.project.model.Visite;
 import visite.project.model.enums.Status;
@@ -80,7 +82,7 @@ public class VisiteServiceImpl implements VisiteService {
     @Override
     public List<VisiteDTO> findByPharmacieId(Long id) {
         List<Visite> visites = visiteRepository.findByPharmacieId(id);
-        return visites.stream().map(visite -> modelMapper.map(visite, VisiteDTO.class)).collect(Collectors.toList());    }
+        return visites.stream().map(visite -> modelMapper.map(visite, VisiteDTO.class)).toList();    }
 
     @Override
     public List<VisiteDTO> findByCliniqueId(Long id) {
@@ -110,5 +112,11 @@ public class VisiteServiceImpl implements VisiteService {
             return null;
         }
 
+    }
+
+    @Override
+    public VisiteDTO findVisiteByCommercial(VisiteCriteria visiteCriteria, Pageable pageable) {
+
+        return (VisiteDTO) visiteRepository.findByCriteria(visiteCriteria, pageable);
     }
 }

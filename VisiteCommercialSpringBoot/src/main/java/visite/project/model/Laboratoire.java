@@ -20,9 +20,8 @@ public class Laboratoire extends Entreprise {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id ;
     private String specialite;
-    @OneToMany(mappedBy = "laboratoire")
+    @OneToMany(mappedBy = "laboratoire", fetch = FetchType.EAGER)
     @JsonIgnore
-
     private List<Visite> visites;
 
     public Laboratoire(long id) {

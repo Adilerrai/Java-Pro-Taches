@@ -5,7 +5,7 @@ import visite.project.model.Visite;
 
 import java.util.List;
 
-public interface VisiteRepository extends JpaRepository<Visite, Long> {
+public interface VisiteRepository extends JpaRepository<Visite, Long> , VisiteCustomeRepository {
 
     List<Visite> findByCommercialId(Long id);
 

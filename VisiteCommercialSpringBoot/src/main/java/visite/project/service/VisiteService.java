@@ -1,6 +1,8 @@
 package visite.project.service;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import visite.project.dto.VisiteCriteria;
 import visite.project.dto.VisiteDTO;
 import visite.project.model.enums.Status;
 
@@ -21,4 +23,6 @@ public interface VisiteService {
     List<VisiteDTO> findByGrossisteId(Long id);
     List<VisiteDTO> findByLaboratoireId(Long id);
     VisiteDTO updateStatus(Long id, Status status);
+
+    VisiteDTO findVisiteByCommercial(VisiteCriteria visiteCriteria, Pageable pageable);
 }

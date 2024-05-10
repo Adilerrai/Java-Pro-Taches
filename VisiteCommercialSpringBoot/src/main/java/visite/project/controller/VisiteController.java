@@ -1,8 +1,10 @@
 package visite.project.controller;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import visite.project.dto.VisiteCriteria;
 import visite.project.dto.VisiteDTO;
 import visite.project.model.enums.Status;
 import visite.project.service.VisiteService;
@@ -62,6 +64,11 @@ public class VisiteController {
         return ResponseEntity.ok(visiteService.findByCommercialId(id));
     }
 
+
+    @GetMapping("/VisiteBycommercial")
+    public ResponseEntity<List<VisiteDTO>> findVisiteByCommercial(@RequestBody VisiteCriteria visiteCriteria, Pageable pageable){
+        return ResponseEntity.ok((List<VisiteDTO>) visiteService.findVisiteByCommercial(visiteCriteria,pageable));
+    }
     @PutMapping("/updateStatus/{id}")
     public ResponseEntity updateStatus(@PathVariable Long id, @RequestParam String status) {
         if (!Status.contains(status)) {

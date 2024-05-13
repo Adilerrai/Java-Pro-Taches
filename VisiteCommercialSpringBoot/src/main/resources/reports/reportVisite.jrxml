@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="VisitsReport"
+              pageWidth="595" pageHeight="842" orientation="Landscape" columnWidth="555"
+              leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20"
+              uuid="2aa76e3f-5cb2-4bb8-82af-0709a2d51e36">
+    <queryString><![CDATA[]]></queryString>
+    <field name="id" class="java.lang.Long"/>
+    <field name="date" class="java.time.LocalDate"/>
+    <field name="heure" class="java.lang.String"/>
+    <field name="objetDelavisite" class="java.lang.String"/>
+    <field name="status" class="visite.project.model.enums.Status"/>
+    <field name="commercial.nom" class="java.lang.String"/>
+    <field name="commercial.prenom" class="java.lang.String"/>
+    <field name="commercial.email" class="java.lang.String"/>
+    <field name="commercial.telephone" class="java.lang.String"/>
+    <field name="commercial.adresse" class="java.lang.String"/>
+    <field name="commercial.matricule" class="java.lang.Long"/>
+    <field name="laboratoire.nom" class="java.lang.String"/>
+    <field name="laboratoire.adresse" class="java.lang.String"/>
+    <field name="laboratoire.telephone" class="java.lang.String"/>
+    <detail>
+        <band height="80">
+            <rectangle>
+                <reportElement x="10" y="0" width="530" height="80" uuid="a0a8e849-3f9d-4a44-9467-08ec319f0a7a"/>
+                <graphicElement>
+                    <pen lineWidth="1.0"/>
+                </graphicElement>
+            </rectangle>
+            <staticText>
+                <reportElement x="20" y="0" width="100" height="20" uuid="8b9a2553-6d8a-42f3-b75d-7e0b65b05e88">
+                    <property name="net.sf.jasperreports.text.markup.style" value="bold"/>
+                </reportElement>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Visite #]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="120" y="0" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99"/>
+                <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="20" y="20" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99">
+                    <property name="net.sf.jasperreports.text.markup.style" value="bold"/>
+                </reportElement>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Date/Heure:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="120" y="20" width="200" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99"/>
+                <textFieldExpression><![CDATA[$F{date} + " " + $F{heure}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="20" y="40" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99">
+                    <property name="net.sf.jasperreports.text.markup.style" value="bold"/>
+                </reportElement>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Objet:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="120" y="40" width="300" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99"/>
+                <textFieldExpression><![CDATA[$F{objetDelavisite}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="420" y="0" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99">
+                    <property name="net.sf.jasperreports.text.markup.style" value="bold"/>
+                </reportElement>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Status:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="420" y="20" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99"/>
+                <textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="20" y="60" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99">
+                    <property name="net.sf.jasperreports.text.markup.style" value="bold"/>
+                </reportElement>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Commercial:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="120" y="60" width="300" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99"/>
+                <textFieldExpression><![CDATA[$F{commercial.nom} + " " + $F{commercial.prenom} + " (" + $F{commercial.matricule}.toString() + ")"]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="420" y="60" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99">
+                    <property name="net.sf.jasperreports.text.markup.style" value="bold"/>
+                </reportElement>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Laboratoire:]]></text>
+            </staticText>
+            <textField isBlankWhenNull="true">
+                <reportElement x="420" y="40" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99"/>
+                <textFieldExpression><![CDATA[$F{laboratoire.nom}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

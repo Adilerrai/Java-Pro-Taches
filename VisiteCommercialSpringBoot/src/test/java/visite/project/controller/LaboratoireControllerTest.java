@@ -60,7 +60,7 @@ class LaboratoireControllerTest {
         ResponseEntity<List<LaboratoireDTO>> response = restTemplate.exchange(
                 createURLWithPort()+ "/findall", HttpMethod.GET, entity, new ParameterizedTypeReference<>() {
                 });
-        System.out.println(response.getBody());
+        System.out.println("logging this to see the output "+response.getBody());
         List<LaboratoireDTO> orderList = response.getBody();
         assert orderList != null;
         assertEquals(response.getStatusCodeValue(), 200);

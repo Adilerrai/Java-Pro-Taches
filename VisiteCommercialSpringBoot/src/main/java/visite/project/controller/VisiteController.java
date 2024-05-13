@@ -8,6 +8,7 @@ import visite.project.dto.VisiteCriteria;
 import visite.project.dto.VisiteDTO;
 import visite.project.model.enums.Status;
 import visite.project.service.VisiteService;
+import visite.project.service.implementation.ReportService;
 
 import java.util.List;
 
@@ -15,9 +16,11 @@ import java.util.List;
 @RequestMapping("/api/visite")
 public class VisiteController {
     private final VisiteService visiteService;
+    private  final ReportService reportService;
 
-    public VisiteController(VisiteService visiteService) {
+    public VisiteController(VisiteService visiteService,  ReportService reportService) {
         this.visiteService = visiteService;
+        this.reportService = reportService;
     }
 
     @PostMapping("/save")
@@ -82,5 +85,10 @@ public class VisiteController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<VisiteDTO>> findAllByLaboratoire(@PathVariable Long id) {
         return ResponseEntity.ok(visiteService.findByLaboratoireId(id));
+    }
+
+    @GetMapping("/reports/{id}")
+    public ResponseEntity<?> generateReport(@PathVariable Long id) {
+        return ResponseEntity.ok(reportService.generateReport(id));
     }
 }

@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
-              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
-              name="VisitsReport"
-              pageWidth="595" pageHeight="842" orientation="Landscape" columnWidth="555"
-              leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20"
-              uuid="2aa76e3f-5cb2-4bb8-82af-0709a2d51e36">
-    <queryString><![CDATA[]]></queryString>
+<!-- Created with Jaspersoft Studio version 6.21.2.final using JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VisitsReport" pageWidth="595" pageHeight="842" orientation="Landscape" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2aa76e3f-5cb2-4bb8-82af-0709a2d51e36">
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
     <field name="id" class="java.lang.Long"/>
     <field name="date" class="java.time.LocalDate"/>
     <field name="heure" class="java.lang.String"/>
@@ -21,16 +18,34 @@
     <field name="laboratoire.nom" class="java.lang.String"/>
     <field name="laboratoire.adresse" class="java.lang.String"/>
     <field name="laboratoire.telephone" class="java.lang.String"/>
+    <title>
+        <band height="50">
+            <staticText>
+                <reportElement x="80" y="5" width="200" height="30" uuid="5f8c61b1-4576-4578-83dd-3864b3b8bade"/>
+                <textElement>
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Rapport de  la Visite : ]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="300" y="5" width="180" height="40" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99"/>
+                <textElement>
+                    <font size="21"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
     <detail>
-        <band height="80">
+        <band height="500">
             <rectangle>
-                <reportElement x="10" y="0" width="530" height="80" uuid="a0a8e849-3f9d-4a44-9467-08ec319f0a7a"/>
+                <reportElement x="10" y="10" width="535" height="480" uuid="a0a8e849-3f9d-4a44-9467-08ec319f0a7a"/>
                 <graphicElement>
                     <pen lineWidth="1.0"/>
                 </graphicElement>
             </rectangle>
             <staticText>
-                <reportElement x="20" y="0" width="100" height="20" uuid="8b9a2553-6d8a-42f3-b75d-7e0b65b05e88">
+                <reportElement x="30" y="30" width="100" height="20" uuid="8b9a2553-6d8a-42f3-b75d-7e0b65b05e88">
                     <property name="net.sf.jasperreports.text.markup.style" value="bold"/>
                 </reportElement>
                 <textElement>
@@ -38,12 +53,8 @@
                 </textElement>
                 <text><![CDATA[Visite #]]></text>
             </staticText>
-            <textField>
-                <reportElement x="120" y="0" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99"/>
-                <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
-            </textField>
             <staticText>
-                <reportElement x="20" y="20" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99">
+                <reportElement x="30" y="70" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99">
                     <property name="net.sf.jasperreports.text.markup.style" value="bold"/>
                 </reportElement>
                 <textElement>
@@ -52,60 +63,90 @@
                 <text><![CDATA[Date/Heure:]]></text>
             </staticText>
             <textField>
-                <reportElement x="120" y="20" width="200" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99"/>
+                <reportElement x="130" y="70" width="200" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99"/>
                 <textFieldExpression><![CDATA[$F{date} + " " + $F{heure}]]></textFieldExpression>
             </textField>
             <staticText>
-                <reportElement x="20" y="40" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99">
+                <reportElement x="30" y="130" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99">
                     <property name="net.sf.jasperreports.text.markup.style" value="bold"/>
                 </reportElement>
                 <textElement>
-                    <font isBold="true"/>
+                    <font size="12" isBold="true"/>
                 </textElement>
                 <text><![CDATA[Objet:]]></text>
             </staticText>
-            <textField>
-                <reportElement x="120" y="40" width="300" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99"/>
+            <textField isBlankWhenNull="true">
+                <reportElement x="130" y="130" width="400" height="40" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99"/>
                 <textFieldExpression><![CDATA[$F{objetDelavisite}]]></textFieldExpression>
             </textField>
             <staticText>
-                <reportElement x="420" y="0" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99">
+                <reportElement x="30" y="400" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99">
                     <property name="net.sf.jasperreports.text.markup.style" value="bold"/>
                 </reportElement>
                 <textElement>
-                    <font isBold="true"/>
+                    <font size="12" isBold="true"/>
                 </textElement>
                 <text><![CDATA[Status:]]></text>
             </staticText>
             <textField>
-                <reportElement x="420" y="20" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99"/>
+                <reportElement x="130" y="400" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99"/>
                 <textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
             </textField>
             <staticText>
-                <reportElement x="20" y="60" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99">
+                <reportElement x="30" y="210" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99">
                     <property name="net.sf.jasperreports.text.markup.style" value="bold"/>
                 </reportElement>
                 <textElement>
-                    <font isBold="true"/>
+                    <font size="12" isBold="true"/>
                 </textElement>
                 <text><![CDATA[Commercial:]]></text>
             </staticText>
-            <textField>
-                <reportElement x="120" y="60" width="300" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99"/>
+            <rectangle>
+                <reportElement x="130" y="210" width="400" height="90" uuid="edfd73d6-e4c4-4831-b7e9-6befe146530d"/>
+            </rectangle>
+            <textField isBlankWhenNull="true">
+                <reportElement x="140" y="220" width="380" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99"/>
                 <textFieldExpression><![CDATA[$F{commercial.nom} + " " + $F{commercial.prenom} + " (" + $F{commercial.matricule}.toString() + ")"]]></textFieldExpression>
             </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="140" y="240" width="380" height="20" uuid="b9089c54-293d-4b7c-8eab-0edcc8556376"/>
+                <textFieldExpression><![CDATA[$F{commercial.email}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="140" y="260" width="380" height="20" uuid="5cbc8e6c-bd08-4d21-9f09-2c60b9b81676"/>
+                <textFieldExpression><![CDATA[$F{commercial.telephone}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="140" y="280" width="380" height="20" uuid="d88c9ca0-4a1b-4404-aab3-d4cde7ab7868"/>
+                <textFieldExpression><![CDATA[$F{commercial.adresse}]]></textFieldExpression>
+            </textField>
             <staticText>
-                <reportElement x="420" y="60" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99">
+                <reportElement x="30" y="310" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99">
                     <property name="net.sf.jasperreports.text.markup.style" value="bold"/>
                 </reportElement>
                 <textElement>
-                    <font isBold="true"/>
+                    <font size="12" isBold="true"/>
                 </textElement>
                 <text><![CDATA[Laboratoire:]]></text>
             </staticText>
+            <rectangle>
+                <reportElement x="130" y="310" width="400" height="60" uuid="fd69d7d8-4aa7-4f46-a1a8-5c1ff6c0d11e"/>
+            </rectangle>
             <textField isBlankWhenNull="true">
-                <reportElement x="420" y="40" width="100" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99"/>
+                <reportElement x="140" y="310" width="380" height="20" uuid="a39ebe0d-38d1-44c5-b15a-05f51aa42f99"/>
                 <textFieldExpression><![CDATA[$F{laboratoire.nom}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="140" y="330" width="380" height="20" uuid="2bd84b50-22e6-40a3-b8a9-04f646c6d390"/>
+                <textFieldExpression><![CDATA[$F{laboratoire.adresse}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="140" y="350" width="380" height="20" uuid="5ad9e3c7-3eac-4f4d-bfc7-e8f4d93ee6dc"/>
+                <textFieldExpression><![CDATA[$F{laboratoire.telephone}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="130" y="30" width="100" height="20" uuid="ff59b3c3-1926-4fba-8c77-7957e7470270"/>
+                <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
             </textField>
         </band>
     </detail>

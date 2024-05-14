@@ -1,39 +1,41 @@
-package visite.project.service.implementation;
+package com.example.invoice.service;
 
+import com.example.invoice.model.EnteteFact;
+import com.example.invoice.repository.EnteteRepository;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.stereotype.Service;
-import visite.project.dto.VisiteDTO;
-import visite.project.service.VisiteService;
+
 
 import java.util.*;
 
 @Service
 public class ReportService {
-    private final VisiteService visiteService;
+    private  final EnteteRepository enteteRepository;
 
-    public ReportService(VisiteService visiteService) {
-        this.visiteService = visiteService;
+    public ReportService( EnteteRepository enteteRepository) {
+        this.enteteRepository = enteteRepository;
+
     }
 
     public String generateReport(Long id) {
         try {
             // Fetch data
-            List<VisiteDTO> visiteList = new ArrayList<>();
+            List<EnteteFact> enteteList = new ArrayList<>();
 
-            VisiteDTO visite = visiteService.findById(id);
-            visiteList.add(visite);
+            EnteteFact entete = enteteRepository.findById(id).get();
+            enteteList.add(entete);
 
             String outputDirectory = "src/main/resources/reports/";
-            String outputFileName = "reports.pdf";
+            String outputFileName = "Invoice.pdf";
 
-            String reportPath = "src/main/resources/reports/reportVisite.jrxml";
+            String reportPath = "src/main/resources/reports/Invoice.jrxml";
             JasperReport jasperReport = JasperCompileManager.compileReport(reportPath);
 
 
-            System.out.println("list: " + visite);
+            System.out.println("entete: " + entete);
 
-            JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(visiteList);
+            JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(enteteList);
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("createdBy", "test");
 

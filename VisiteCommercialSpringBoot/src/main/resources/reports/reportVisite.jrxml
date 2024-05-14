@@ -97,7 +97,8 @@
                     <property name="net.sf.jasperreports.text.markup.style" value="bold"/>
                 </reportElement>
                 <textElement>
-                    <font size="12" isBold="true"/>
+                    <font size="12" isBold="true"/>(23, 11 , 12.11, NULL) INSERT INTO Ent (id, Neff, Nt) VALUES
+                    (11, 26.5, 0.005);
                 </textElement>
                 <text><![CDATA[Commercial:]]></text>
             </staticText>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="Invoice" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+
+    <!-- Fields -->
+    <field name="numeroFacture" class="java.lang.Integer"/>
+    <field name="dateFacture" class="java.util.Date"/>
+    <field name="modePaiement" class="java.lang.String"/>
+    <field name="statut" class="java.lang.String"/>
+    <field name="client.email" class="java.lang.String"/>
+    <field name="client.telephone" class="java.lang.String"/>
+    <field name="detFactures" class="java.util.List"/>
+
+    <!-- SubDataset for detFactures -->
+   <!-- <subDataset name="detFacturesDataset">
+        <field name="produit.designation" class="java.lang.String"/>
+        <field name="quantite" class="java.lang.Integer"/>
+        <field name="prixUnitaire" class="java.math.BigDecimal"/>
+        <field name="montantTotalParProduit" class="java.math.BigDecimal"/>
+    </subDataset>-->
+
+    <!-- Styles -->
+    <style name="Title" fontSize="18" isBold="true"/>
+    <style name="ColumnHeader" fontSize="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+    <style name="Detail" fontSize="10"/>
+
+    <!-- Title Section -->
+    <title>
+        <band height="50">
+            <staticText>
+                <reportElement x="0" y="0" width="555" height="30" style="Title"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Invoice]]></text>
+            </staticText>
+        </band>
+    </title>
+
+    <!-- Page Header Section -->
+    <pageHeader>
+        <band height="50">
+            <staticText>
+                <reportElement x="0" y="0" width="555" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Invoice Details]]></text>
+            </staticText>
+        </band>
+    </pageHeader>
+
+    <!-- Column Header Section -->
+    <columnHeader>
+        <band height="30">
+            <staticText>
+                <reportElement x="0" y="0" width="140" height="20" style="ColumnHeader"/>
+                <text><![CDATA[Produit]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="140" y="0" width="80" height="20" style="ColumnHeader"/>
+                <text><![CDATA[Quantité]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="220" y="0" width="100" height="20" style="ColumnHeader"/>
+                <text><![CDATA[Prix Unitaire]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="320" y="0" width="100" height="20" style="ColumnHeader"/>
+                <text><![CDATA[Montant Total]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <!-- Detail Section -->
+    <detail>
+        <band height="30">
+            <componentElement>
+                <reportElement x="0" y="0" width="555" height="30"/>
+                <jr:table>
+                    <datasetRun subDataset="detFacturesDataset">
+                        <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detFactures})]]></dataSourceExpression>
+                    </datasetRun>
+                    <jr:column width="140">
+                        <jr:columnHeader>
+                            <staticText>
+                                <reportElement x="0" y="0" width="140" height="20" style="ColumnHeader"/>
+                                <text><![CDATA[Produit]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell>
+                            <textField>
+                                <reportElement x="0" y="0" width="140" height="20" style="Detail"/>
+                                <textFieldExpression><![CDATA[$F{produit.designation}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="80">
+                        <jr:columnHeader>
+                            <staticText>
+                                <reportElement x="0" y="0" width="80" height="20" style="ColumnHeader"/>
+                                <text><![CDATA[Quantité]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell>
+                            <textField>
+                                <reportElement x="0" y="0" width="80" height="20" style="Detail"/>
+                                <textFieldExpression><![CDATA[$F{quantite}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="100">
+                        <jr:columnHeader>
+                            <staticText>
+                                <reportElement x="0" y="0" width="100" height="20" style="ColumnHeader"/>
+                                <text><![CDATA[Prix Unitaire]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell>
+                            <textField>
+                                <reportElement x="0" y="0" width="100" height="20" style="Detail"/>
+                                <textFieldExpression><![CDATA[$F{prixUnitaire}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="100">
+                        <jr:columnHeader>
+                            <staticText>
+                                <reportElement x="0" y="0" width="100" height="20" style="ColumnHeader"/>
+                                <text><![CDATA[Montant Total]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell>
+                            <textField>
+                                <reportElement x="0" y="0" width="100" height="20" style="Detail"/>
+                                <textFieldExpression><![CDATA[$F{montantTotalParProduit}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                </jr:table>
+            </componentElement>
+        </band>
+    </detail>
+
+    <!-- Page Footer Section -->
+    <pageFooter>
+        <band height="20">
+            <staticText>
+                <reportElement x="0" y="0" width="555" height="20"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Page Footer]]></text>
+            </staticText>
+        </band>
+    </pageFooter>
+
+    <!-- Summary Section -->
+    <summary>
+        <band height="50">
+            <staticText>
+                <reportElement x="0" y="0" width="555" height="20"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Summary]]></text>
+            </staticText>
+        </band>
+    </summary>
+</jasperReport>

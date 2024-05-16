@@ -34,6 +34,7 @@ public class EnteteController {
         return ResponseEntity.ok(enteteService.getAllEntetes());
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<EnteteFactDTO> getEnteteById(@PathVariable Long id) {
         return ResponseEntity.ok(enteteService.getEnteteById(id));

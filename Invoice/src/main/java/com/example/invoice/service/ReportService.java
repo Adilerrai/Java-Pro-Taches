@@ -6,6 +6,7 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 @Service
@@ -20,30 +21,20 @@ public class ReportService {
         try {
             // Fetch data
             List<EnteteFact> enteteList = new ArrayList<>();
-
             EnteteFact entete = enteteRepository.findById(id).get();
             enteteList.add(entete);
 
             String outputDirectory = "src/main/resources/reports/";
-            String outputFileName = "Invoice.pdf";
+            String outputFileName = "invoice.pdf";
 
             // Compile main report
             String mainReportPath = "src/main/resources/reports/Invoice.jrxml";
             JasperReport mainJasperReport = JasperCompileManager.compileReport(mainReportPath);
 
-            // Compile subreport
-            String subReportPath = "src/main/resources/reports/detFacturesSubReport.jrxml";
-            String compiledSubReportPath = "src/main/resources/reports/detFacturesSubReport.jasper";
-            JasperCompileManager.compileReportToFile(subReportPath, compiledSubReportPath);
-
-            System.out.println("entete: " + entete);
-
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(enteteList);
             Map<String, Object> parameters = new HashMap<>();
-            parameters.put("createdBy", "test");
-
-            // Add compiled subreport to parameters
-            parameters.put("DetFacturesSubreport", compiledSubReportPath);
+            BigDecimal totalAmount = entete.getDetFactures().stream().map(detFacture -> detFacture.getMontantTotalParProduit()).reduce(BigDecimal.ZERO, BigDecimal::add);
+            parameters.put("total", totalAmount);
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(mainJasperReport, parameters, jrBeanCollectionDataSource);
 

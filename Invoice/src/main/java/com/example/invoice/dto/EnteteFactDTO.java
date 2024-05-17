@@ -21,6 +21,8 @@ public class EnteteFactDTO {
 
     private Status statut;
 
+
+
     @ManyToOne
     private Client client;
 

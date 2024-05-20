@@ -11,9 +11,9 @@ import java.util.List;
 @Service
 public class DetFactureImpl implements DetFactService {
 
-    private DetFactureRepository detFactureRepository;
+    private final DetFactureRepository detFactureRepository;
 
-    private DetFactureMapper detFactureMapper;
+    private final DetFactureMapper detFactureMapper;
 
     public DetFactureImpl(DetFactureRepository detFactureRepository, DetFactureMapper   detFactureMapper)   {
         this.detFactureRepository = detFactureRepository;
@@ -51,15 +51,12 @@ public class DetFactureImpl implements DetFactService {
     @Override
     public DetFactureDTO updateDetFact(DetFactureDTO detFactDTO) {
         DetFacture detFacture = detFactureRepository.findById(detFactDTO.getId()).get();
-        if(detFacture != null) {
-            detFacture.setProduit(detFactDTO.getProduit());
-            detFacture.setQuantite(detFactDTO.getQuantite());
-            detFacture.setPrixUnitaire(detFactDTO.getPrixUnitaire());
-            detFacture.setMontantTotalParProduit(detFactDTO.getMontantTotalParProduit());
-            detFacture.setFacture(detFactDTO.getEnteteFactDTO());
-            detFactureRepository.save(detFacture);
-            return detFactureMapper.entityToDto(detFacture);
-    }
-        return null;
+        detFacture.setProduit(detFactDTO.getProduit());
+        detFacture.setQuantite(detFactDTO.getQuantite());
+        detFacture.setPrixUnitaire(detFactDTO.getPrixUnitaire());
+        detFacture.setMontantTotalParProduit(detFactDTO.getMontantTotalParProduit());
+        detFacture.setFacture(detFactDTO.getEnteteFactDTO());
+        detFactureRepository.save(detFacture);
+        return detFactureMapper.entityToDto(detFacture);
     }
 }

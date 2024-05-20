@@ -50,17 +50,14 @@ public class EnteteServiceImpl implements EnteteService {
     @Override
     public EnteteFactDTO updateEntete(EnteteFactDTO enteteDTO) {
         EnteteFact enteteFact = enteteRepository.findById(enteteDTO.getId()).get();
-        if(enteteFact != null) {
-            enteteFact.setClient(enteteDTO.getClient());
-            enteteFact.setNumeroFacture(enteteDTO.getNumeroFacture());
-            enteteFact.setDateFacture(enteteDTO.getDateFacture());
-            enteteFact.setModePaiement(enteteDTO.getModePaiement());
-            enteteFact.setStatut(enteteDTO.getStatut());
-            enteteFact.setDetFactures(enteteDTO.getDetFactures());
-            enteteRepository.save(enteteFact);
-            return enteteMapper.entityToDto(enteteFact);
-        }
-        return null;
+        enteteFact.setClient(enteteDTO.getClient());
+        enteteFact.setNumeroFacture(enteteDTO.getNumeroFacture());
+        enteteFact.setDateFacture(enteteDTO.getDateFacture());
+        enteteFact.setModePaiement(enteteDTO.getModePaiement());
+        enteteFact.setStatut(enteteDTO.getStatut());
+        enteteFact.setDetFactures(enteteDTO.getDetFactures());
+        enteteRepository.save(enteteFact);
+        return enteteMapper.entityToDto(enteteFact);
 
     }
 }

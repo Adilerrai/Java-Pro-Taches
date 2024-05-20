@@ -5,7 +5,6 @@ import com.example.invoice.model.Client;
 import com.example.invoice.repository.ClientRepository;
 import com.example.invoice.service.ClientService;
 import com.example.invoice.service.mapper.ClientMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,16 +50,12 @@ public class ClientServiceImpl implements ClientService  {
     @Override
     public ClientDTO updateClient(ClientDTO clientDTO) {
         Client client = clientRepository.findById(clientDTO.getId()).get();
-        if(client != null) {
-            client.setNom(clientDTO.getNom());
-            client.setPrenom(clientDTO.getPrenom());
-            client.setAdresse(clientDTO.getAdresse());
-            client.setTelephone(clientDTO.getTelephone());
-            client.setEmail(clientDTO.getEmail());
-            clientRepository.save(client);
-            return clientMapper.entityToDto(client);
-        }else {
-            return null;
-        }
+        client.setNom(clientDTO.getNom());
+        client.setPrenom(clientDTO.getPrenom());
+        client.setAdresse(clientDTO.getAdresse());
+        client.setTelephone(clientDTO.getTelephone());
+        client.setEmail(clientDTO.getEmail());
+        clientRepository.save(client);
+        return clientMapper.entityToDto(client);
     }
 }

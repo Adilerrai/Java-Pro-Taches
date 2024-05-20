@@ -48,13 +48,10 @@ public class ProduitServiceImpl  implements ProduitService {
     @Override
     public ProduitDTO updateProduit(ProduitDTO produitDTO) {
         Produit produit = produitRepository.findById(produitDTO.getId()).get();
-        if(produit != null) {
-            produit.setDesignation(produitDTO.getDesignation());
-            produit.setPrixUnitaire(produitDTO.getPrixUnitaire());
-            produit.setDescription(produitDTO.getDescription());
-            produitRepository.save(produit);
-            return produitMapper.entityToDto(produit);
-        }
-        return null;
+        produit.setDesignation(produitDTO.getDesignation());
+        produit.setPrixUnitaire(produitDTO.getPrixUnitaire());
+        produit.setDescription(produitDTO.getDescription());
+        produitRepository.save(produit);
+        return produitMapper.entityToDto(produit);
     }
 }

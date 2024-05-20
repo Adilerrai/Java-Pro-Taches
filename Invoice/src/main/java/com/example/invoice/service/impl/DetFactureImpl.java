@@ -34,8 +34,10 @@ public class DetFactureImpl implements DetFactService {
     }
 
     @Override
-    public DetFactureDTO saveDetFact(DetFactureDTO detFactDTO) {
-        DetFacture detFacture = detFactureMapper.dtoToEntity(detFactDTO);
+    public DetFactureDTO saveDetFact(DetFactureDTO detFactureDTO) {
+        DetFacture detFacture = detFactureMapper.dtoToEntity(detFactureDTO);
+        detFacture.setQuantite(detFactureDTO.getQuantite());
+        detFacture.setPrixUnitaire(detFactureDTO.getPrixUnitaire());
         detFactureRepository.save(detFacture);
         return detFactureMapper.entityToDto(detFacture);
     }

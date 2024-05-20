@@ -21,7 +21,8 @@ public class DetailFactController {
 
     @PostMapping("/add")
     public ResponseEntity<DetFactureDTO> addDetailFact(@RequestBody DetFactureDTO detailFactDTO) {
-        return ResponseEntity.ok(detailFactService.saveDetFact(detailFactDTO));
+        DetFactureDTO savedDetailFactDTO = detailFactService.saveDetFact(detailFactDTO);
+        return ResponseEntity.ok(savedDetailFactDTO);
     }
 
 

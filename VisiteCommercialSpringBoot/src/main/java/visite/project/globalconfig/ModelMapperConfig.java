@@ -11,4 +11,9 @@ public class ModelMapperConfig {
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
+
+
+    public void testcomparison() {
+        System.out.println("test");
+    }
 }

@@ -33,7 +33,10 @@ public class ReportService {
 
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(enteteList);
             Map<String, Object> parameters = new HashMap<>();
-            BigDecimal totalAmount = entete.getDetFactures().stream().map(detFacture -> detFacture.getMontantTotalParProduit()).reduce(BigDecimal.ZERO, BigDecimal::add);
+            BigDecimal totalAmount = entete.getDetFactures().stream()
+                    .filter(detFacture -> detFacture.getMontantTotalParProduit() != null)
+                    .map(detFacture -> detFacture.getMontantTotalParProduit())
+                    .reduce(BigDecimal.ZERO, BigDecimal::add);
             parameters.put("total", totalAmount);
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(mainJasperReport, parameters, jrBeanCollectionDataSource);

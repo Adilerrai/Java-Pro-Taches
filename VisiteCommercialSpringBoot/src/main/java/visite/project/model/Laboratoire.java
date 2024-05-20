@@ -27,4 +27,13 @@ public class Laboratoire extends Entreprise {
     public Laboratoire(long id) {
         this.id = id;
     }
+
+    public Laboratoire(String nom, String adresse, String specialite) {
+        this.specialite = specialite;
+    }
+
+public Laboratoire(String nom, String adresse, String specialite, List<Visite> visites) {
+        this.specialite = specialite;
+        this.visites = visites;
+    }
 }

@@ -12,22 +12,33 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/entetes")
 public class EnteteController {
+
+
     private EnteteService enteteService;
     private ReportService reportService;
+
+
     public EnteteController(EnteteService enteteService, ReportService reportService) {
         this.enteteService = enteteService;
         this.reportService = reportService;
     }
+
+
+
 
     @PostMapping("/add")
     public ResponseEntity<EnteteFactDTO> addEntete(@RequestBody EnteteFactDTO enteteDTO) {
         return ResponseEntity.ok(enteteService.saveEntete(enteteDTO));
     }
 
+
+
     @PutMapping("/update")
     public ResponseEntity<EnteteFactDTO> updateEntete(@RequestBody EnteteFactDTO enteteDTO) {
         return ResponseEntity.ok(enteteService.updateEntete(enteteDTO));
     }
+
+
 
     @GetMapping("/all")
     public ResponseEntity<List<EnteteFactDTO>> getAllEntetes() {

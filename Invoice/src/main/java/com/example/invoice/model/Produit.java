@@ -16,7 +16,7 @@ public class Produit {
     private String designation;
 
     private BigDecimal prixUnitaire;
-    private String Description;
+    private String description;
 
 
 
@@ -24,7 +24,7 @@ public class Produit {
         this.id = id;
         this.designation = designation;
         this.prixUnitaire = prixUnitaire;
-        Description = description;
+        this.description = description;
     }
 
     public Produit() {
@@ -48,11 +48,11 @@ public class Produit {
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public void setId(Long id) {

@@ -8,17 +8,31 @@ import java.util.List;
 public class ClientDTO {
 
     private Long id;
+
     private String nom;
+
+
     private String prenom;
+
+
     private String adresse;
+
+    private int age;
+
+
+
     private String email;
+
+
     private String telephone;
+
+
     private List<EnteteFact> enteteFacts;
 
     public ClientDTO() {
     }
 
-    public ClientDTO(Long id, String nom, String prenom, String adresse, String email, String telephone, List<EnteteFact> enteteFacts) {
+    public ClientDTO(Long id, String nom, String prenom, int age, String adresse, String email, String telephone, List<EnteteFact> enteteFacts) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -26,6 +40,7 @@ public class ClientDTO {
         this.email = email;
         this.telephone = telephone;
         this.enteteFacts = enteteFacts;
+        this.age= age;
     }
 
     public void setId(Long id) {
@@ -54,6 +69,15 @@ public class ClientDTO {
 
     public String getPrenom() {
         return prenom;
+    }
+
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public void setPrenom(String prenom) {

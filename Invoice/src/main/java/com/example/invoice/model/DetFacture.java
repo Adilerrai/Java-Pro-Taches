@@ -7,11 +7,18 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "det_facture")
 public class DetFacture {
+
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+
     private Long quantite;
+
 
     private BigDecimal prixUnitaire;
 

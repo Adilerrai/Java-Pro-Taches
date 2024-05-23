@@ -3,15 +3,28 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
+
+
 @Entity
 public class Client {
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nom;
+
     private String prenom;
+
+
     private String adresse;
+
+    private  int age;
+
     private String email;
+
+
     private String telephone;
 
     @OneToMany
@@ -19,13 +32,14 @@ public class Client {
     public Client() {
     }
 
-    public Client(Long id, String nom, String prenom, String adresse, String email, String telephone) {
+    public Client(Long id, String nom, int age, String prenom, String adresse, String email, String telephone) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
         this.email = email;
         this.telephone = telephone;
+        this.age = age;
     }
 
     public void setId(Long id) {
@@ -36,6 +50,13 @@ public class Client {
         return id;
     }
 
+    public List<EnteteFact> getEnteteFacts() {
+        return enteteFacts;
+    }
+
+    public void setEnteteFacts(List<EnteteFact> enteteFacts) {
+        this.enteteFacts = enteteFacts;
+    }
 
     public String getNom() {
         return nom;
@@ -75,5 +96,13 @@ public class Client {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }

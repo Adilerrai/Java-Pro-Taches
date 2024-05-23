@@ -10,12 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Service
-
 @Transactional
 public class ClientServiceImpl implements ClientService  {
 
     private final ClientMapper clientMapper;
     private final ClientRepository clientRepository;
+
     public ClientServiceImpl(ClientMapper clientMapper, ClientRepository clientRepository) {
         this.clientMapper = clientMapper;
         this.clientRepository = clientRepository;

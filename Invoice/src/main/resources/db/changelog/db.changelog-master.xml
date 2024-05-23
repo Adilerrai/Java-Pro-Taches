@@ -5,7 +5,15 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
+    <changeSet id="1" author="adil">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="client" columnName="age"/>
+        </preConditions>
 
-    <!--   <include file="db/changelog/db.changelog-1.0.xml"/>  -->
+        <comment>Adding a new column to the table</comment>
+        <addColumn tableName="client">
+            <column name="age" type="int"/>
+        </addColumn>
+    </changeSet>
 
 </databaseChangeLog>

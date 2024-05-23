@@ -12,6 +12,7 @@ public class ProduitDTO {
     private String designation;
 
     private BigDecimal prixUnitaire;
+
     private String Description;
 
 

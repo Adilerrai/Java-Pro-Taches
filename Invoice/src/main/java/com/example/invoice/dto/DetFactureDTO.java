@@ -12,15 +12,25 @@ public class DetFactureDTO {
 
     private Long id;
 
+
+
     private Long quantite;
+
+
 
     private BigDecimal prixUnitaire;
 
+
+
     private BigDecimal montantTotalParProduit;
+
+
 
     public Produit getProduit() {
         return produit;
     }
+
+
 
     @ManyToOne
     private Produit produit;

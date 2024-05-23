@@ -24,6 +24,7 @@ public class DetFactureImpl implements DetFactService {
     public List<DetFactureDTO> getAllDetFacts() {
         List<DetFacture> detFactures = detFactureRepository.findAll();
         List<DetFactureDTO> detFactureDTOS = detFactures.stream().map(detFacture -> detFactureMapper.entityToDto(detFacture)).toList();
+
         return detFactureDTOS;
     }
 

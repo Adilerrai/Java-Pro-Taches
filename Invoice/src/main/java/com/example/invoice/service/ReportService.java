@@ -25,7 +25,7 @@ public class ReportService {
             enteteList.add(entete);
 
             String outputDirectory = "src/main/resources/reports/";
-            String outputFileName = "invoice.pdf";
+            String outputFileName = "invoice"+ entete.getNumeroFacture() +".pdf";
 
             // Compile main report
             String mainReportPath = "src/main/resources/reports/Invoice.jrxml";

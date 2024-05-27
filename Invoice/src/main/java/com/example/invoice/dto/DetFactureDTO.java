@@ -88,8 +88,6 @@ public class DetFactureDTO {
         this.montantTotalParProduit = montantTotalParProduit;
     }
 
-
-
     public void setId(Long id) {
         this.id = id;
     }

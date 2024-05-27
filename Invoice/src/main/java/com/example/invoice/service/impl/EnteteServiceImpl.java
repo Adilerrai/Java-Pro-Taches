@@ -1,10 +1,15 @@
 package com.example.invoice.service.impl;
 
 import com.example.invoice.dto.EnteteFactDTO;
+import com.example.invoice.dto.EnteteRechercheDTO;
 import com.example.invoice.model.EnteteFact;
+import com.example.invoice.repository.EnteteCriteriaRepo;
+import com.example.invoice.repository.EnteteCriteriaRepoImpl;
 import com.example.invoice.repository.EnteteRepository;
 import com.example.invoice.service.EnteteService;
 import com.example.invoice.service.mapper.EnteteMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +19,14 @@ public class EnteteServiceImpl implements EnteteService {
 
     private EnteteRepository enteteRepository;
 
+    private EnteteCriteriaRepo enteteCriteriaRepo;
+
     private EnteteMapper enteteMapper;
 
-    public EnteteServiceImpl(EnteteRepository enteteRepository, EnteteMapper enteteMapper) {
+    public EnteteServiceImpl(EnteteRepository enteteRepository, EnteteMapper enteteMapper, EnteteCriteriaRepo enteteCriteriaRepo) {
         this.enteteRepository = enteteRepository;
         this.enteteMapper = enteteMapper;
+        this.enteteCriteriaRepo = enteteCriteriaRepo;
     }
 
 
@@ -58,6 +66,15 @@ public class EnteteServiceImpl implements EnteteService {
         enteteFact.setDetFactures(enteteDTO.getDetFactures());
         enteteRepository.save(enteteFact);
         return enteteMapper.entityToDto(enteteFact);
+
+    }
+
+    @Override
+    public Page<EnteteFactDTO> searchMultiple(EnteteRechercheDTO enteteFactDTO, Pageable pageable) {
+
+        return enteteCriteriaRepo.findByCriteria(enteteFactDTO, pageable);
+
+
 
     }
 }

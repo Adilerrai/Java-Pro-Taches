@@ -2,11 +2,15 @@ package com.example.invoice.web;
 
 
 import com.example.invoice.dto.EnteteFactDTO;
+import com.example.invoice.dto.EnteteRechercheDTO;
 import com.example.invoice.service.EnteteService;
 import com.example.invoice.service.ReportService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 @RestController
@@ -62,4 +66,13 @@ public class EnteteController {
     public ResponseEntity<String> generateReport(@PathVariable Long id) {
         return ResponseEntity.ok().body(reportService.generateReport(id));
     }
+
+
+    @GetMapping("/multiple-search")
+    public ResponseEntity<Page<EnteteFactDTO>> searchMultiple(@RequestBody EnteteRechercheDTO enteteFactDTO, Pageable pageable) {
+
+        return ResponseEntity.ok(enteteService.searchMultiple(enteteFactDTO, pageable));
+
+    }
+
 }

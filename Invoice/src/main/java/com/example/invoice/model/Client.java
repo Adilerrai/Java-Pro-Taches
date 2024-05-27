@@ -1,5 +1,9 @@
 package com.example.invoice.model;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 
 import java.util.List;
 
@@ -15,16 +19,22 @@ public class Client {
 
     private String nom;
 
-    private String prenom;
 
+    @NotBlank(message = "Prenom cannot be blank")
+    private String prenom;
 
     private String adresse;
 
+
+    @Positive(message = "L'age doit être un nombre positif")
     private  int age;
 
+
+    @Email
+    @Column(unique = true)
     private String email;
 
-
+    @Pattern(regexp = "^[0-9]{9}$", message = "Le numéro de téléphone doit être composé de 9 chiffres")
     private String telephone;
 
     @OneToMany

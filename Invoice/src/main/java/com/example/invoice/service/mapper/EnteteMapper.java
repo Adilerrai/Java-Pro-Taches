@@ -5,6 +5,8 @@ import com.example.invoice.model.EnteteFact;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 
+
+
 @Mapper(componentModel = "spring", uses = {ProduitMapper.class,DetFactureMapper.class,ClientMapper.class })
 public interface EnteteMapper {
         EnteteFactDTO entityToDto(EnteteFact entete);

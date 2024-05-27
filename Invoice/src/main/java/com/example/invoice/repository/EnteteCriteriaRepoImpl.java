@@ -1,9 +1,9 @@
 package com.example.invoice.repository;
 
-import com.example.invoice.dto.EnteteFactDTO;
+
 import com.example.invoice.dto.EnteteRechercheDTO;
 import com.example.invoice.model.EnteteFact;
-import com.example.invoice.service.mapper.EnteteMapper;
+import com.example.invoice.model.EnteteFact_;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.*;
@@ -21,39 +21,44 @@ public class EnteteCriteriaRepoImpl implements EnteteCriteriaRepo {
 
     private final EntityManager em;
 
-    private EnteteMapper enteteMapper;
 
-    public EnteteCriteriaRepoImpl(EntityManager em , EnteteMapper enteteMapper) {
+    public EnteteCriteriaRepoImpl(EntityManager em) {
         this.em = em;
-        this.enteteMapper = enteteMapper;
     }
 
     private Predicate[] generateWhere(CriteriaBuilder cb, Root<EnteteFact> rootEntete, EnteteRechercheDTO enteteRechercheDTO) {
         List<Predicate> predicates = new ArrayList<>();
 
-        if (enteteRechercheDTO.getStatut() != null) {
-            predicates.add(cb.equal(rootEntete.get("statut"), enteteRechercheDTO.getStatut()));
+
+
+
+        if (enteteRechercheDTO.getStatut()!=null){
+            predicates.add(cb.equal(rootEntete.get(EnteteFact_.statut), enteteRechercheDTO.getStatut()));
         }
+
         if (enteteRechercheDTO.getNumeroFacture() != null) {
-            predicates.add(cb.equal(rootEntete.get("numeroFacture"), enteteRechercheDTO.getNumeroFacture()));
+            predicates.add(cb.equal(rootEntete.get(EnteteFact_.NUMERO_FACTURE), enteteRechercheDTO.getNumeroFacture()));
         }
+
         if (enteteRechercheDTO.getDateFacture() != null) {
-            predicates.add(cb.equal(rootEntete.get("dateFacture"), enteteRechercheDTO.getDateFacture()));
+            predicates.add(cb.equal(rootEntete.get(EnteteFact_.DATE_FACTURE), enteteRechercheDTO.getDateFacture()));
         }
+
+
         if (enteteRechercheDTO.getModePaiement() != null) {
-            predicates.add(cb.like(cb.lower(rootEntete.get("modePaiement")), "%" + enteteRechercheDTO.getModePaiement().toLowerCase().trim() + "%"));
+            predicates.add(cb.like(cb.lower(rootEntete.get(EnteteFact_.MODE_PAIEMENT)), "%" + enteteRechercheDTO.getModePaiement().toLowerCase().trim() + "%"));
         }
         if (enteteRechercheDTO.getClient() != null) {
-            predicates.add(cb.equal(rootEntete.get("client"), enteteRechercheDTO.getClient()));
+            predicates.add(cb.equal(rootEntete.get(EnteteFact_.client), enteteRechercheDTO.getClient()));
         }
         if (enteteRechercheDTO.getDetFactures() != null) {
-            predicates.add(cb.equal(rootEntete.get("detFactures"), enteteRechercheDTO.getDetFactures()));
+            predicates.add(cb.equal(rootEntete.get(EnteteFact_.DET_FACTURES), enteteRechercheDTO.getDetFactures() ));
         }
         return predicates.toArray(new Predicate[0]);
     }
 
     @Override
-    public Page<EnteteFactDTO> findByCriteria(EnteteRechercheDTO enteteRechercheDTO, Pageable pageable) {
+    public Page<EnteteFact> findByCriteria(EnteteRechercheDTO enteteRechercheDTO, Pageable pageable) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<EnteteFact> cq = cb.createQuery(EnteteFact.class);
         Root<EnteteFact> enteteFact = cq.from(EnteteFact.class);
@@ -67,14 +72,7 @@ public class EnteteCriteriaRepoImpl implements EnteteCriteriaRepo {
         TypedQuery<EnteteFact> query = em.createQuery(cq);
         List<EnteteFact> results = query.getResultList();
 
-        // Transform the results from EnteteFact to EnteteFactDTO
-        List<EnteteFactDTO> dtoResults = results.stream()
-                .map(fact -> {
-                    // Transform fact to EnteteFactDTO
-                    EnteteFactDTO dto = enteteMapper.entityToDto(fact);
-                    return dto;
-                })
-                .collect(Collectors.toList());
+
 
         // count lignes
         CriteriaQuery<Long> cqcount = cb.createQuery(Long.class);
@@ -85,6 +83,6 @@ public class EnteteCriteriaRepoImpl implements EnteteCriteriaRepo {
         Long totalCount = em.createQuery(cqcount).getSingleResult();
 
         // Return the results as a Page
-        return new PageImpl<>(dtoResults, pageable, totalCount);
+        return new PageImpl<>(results, pageable, totalCount);
     }
 }

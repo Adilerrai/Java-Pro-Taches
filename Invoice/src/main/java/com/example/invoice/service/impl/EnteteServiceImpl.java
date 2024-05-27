@@ -4,7 +4,6 @@ import com.example.invoice.dto.EnteteFactDTO;
 import com.example.invoice.dto.EnteteRechercheDTO;
 import com.example.invoice.model.EnteteFact;
 import com.example.invoice.repository.EnteteCriteriaRepo;
-import com.example.invoice.repository.EnteteCriteriaRepoImpl;
 import com.example.invoice.repository.EnteteRepository;
 import com.example.invoice.service.EnteteService;
 import com.example.invoice.service.mapper.EnteteMapper;
@@ -70,10 +69,9 @@ public class EnteteServiceImpl implements EnteteService {
     }
 
     @Override
-    public Page<EnteteFactDTO> searchMultiple(EnteteRechercheDTO enteteFactDTO, Pageable pageable) {
+    public Page<EnteteFact> searchMultiple(EnteteRechercheDTO enteteFactDTO, Pageable pageable) {
 
-        return enteteCriteriaRepo.findByCriteria(enteteFactDTO, pageable);
-
+        return  enteteCriteriaRepo.findByCriteria(enteteFactDTO, pageable);
 
 
     }

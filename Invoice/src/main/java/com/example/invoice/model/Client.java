@@ -30,7 +30,7 @@ public class Client {
     private  int age;
 
 
-    @Email
+    @Email(message="L'email doit être valide")
     @Column(unique = true)
     private String email;
 
